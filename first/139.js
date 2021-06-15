@@ -16,7 +16,7 @@ var wordBreak = function(s, wordDict) {
   for (let i = 1; i<= s.length; i++) {
     subWord = s.slice(0, i)
     for (let k = 0; k<i; k++) {
-      let pre =subWord.slice(0, k), next = subWord.slice(k)
+      let next = subWord.slice(k)
       if (k === 0) {
         arr[i-1] = setDict.has(next)
       }else {
