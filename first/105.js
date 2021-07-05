@@ -5,14 +5,14 @@ var buildTree = function(preorder, inorder) {
   for (let i = 0; i<inorder.length; i++) {
     map.set(inorder[i], i)
   }
-  function mybuildTree(preorderLeft, preorderRigt, inorderLeft, inorderRight){
-    if (preorderRigt<preorderLeft) return null
-    let root = treeNode(preorder[preorderLeft])
-    let inorderRootIndex = map.get(preorder[preorderLeft])
-    root.left = mybuildTree(preorderLeft+1, preorderLeft + inorderRootIndex-inorderLeft, inorderLeft, inorderRootIndex-1)
-    root.right = mybuildTree(preorderLeft + inorderRootIndex-inorderLeft+1, preorderRigt, inorderRootIndex+1, inorderRight)
+  function mybuildTree(start1, start2, len){
+    if (len < 1) return null
+    let root = new TreeNode(preorder[start1])
+    if (len === 1) return root
+    let currLen = map.get(preorder[start1] - start2)
+    root.left = mybuildTree(start1 + 1, start2, currLen)
+    root.right = mybuildTree(start1 + 1 + currLen, preorder[start1] + 1, currLen)
     return root
   }
-  n = preorder.length
-  return mybuildTree(0,n-1,0,n-1)
+  return mybuildTree(0,0,preorder.length)
 };
