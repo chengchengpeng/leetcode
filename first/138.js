@@ -5,16 +5,38 @@
 // 复制链表中的指针都不应指向原链表中的节点 。
 
 var copyRandomList = function (head) {
-  let newHead = null, node = null, val, set  = new Set()
+  let newHead = null, node = null, map  = new Map()
   while (head) {
-    val = head.val
     if (node) {
-
+      if (map.has(head)){
+        node.next = map.get(head)
+      }else {
+        node.next = new ListNode(head.val)
+        map.set(head, node.next)
+      }
+      node = node.next
+      if (map.has(head.random)){
+        node.random = map.get(head.random)
+      }else if(head.random){
+        node.random = new ListNode(head.random.val)
+        map.set(head.random, node.random)
+      }else {
+        node.random = null
+      }
     } else {
-      node = new ListNode(val)
-      node.random =
+      node = new ListNode(head.val)
+      map.set(head, node)
+      if (head.random === head) {
+        node.random = node
+      }else if (head.random){
+        node.random  = new ListNode(head.random.val)
+        map.set(head.random, node.random)
+      }else {
+        node.random = null
+      }
       newHead = node
-
     }
+    head = head.next
   }
+  return newHead
 };
