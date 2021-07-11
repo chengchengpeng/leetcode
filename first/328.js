@@ -3,26 +3,15 @@
 // 请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。
 
 var oddEvenList = function(head) {
-  let curr = head, next = head.next,newCurr =next.next , newCurr = null, evenHead = next, res = head
-  if (newCurr) {
-    newNext = newCurr.next
+  if (!head) return head
+
+  let odd = oddHead = head.next, oven  = head
+  while (oven.next && oven.next.next) {
+    oven.next = oven.next.next
+    odd.next = oven.next.next
+    oven = oven.next
+    odd = odd.next
   }
-  while (newCurr || newNext){
-    curr.next = newCurr
-    curr = newCurr
-    if (newNext) {
-      next.next = newNext
-      newCurr = newNext.next
-      if (newNext.next) {
-        newNext = newCurr.next
-      }else {
-        ewNext = null
-      }
-    }else {
-      newCurr = null
-      newNext = null
-   }
-  }
-  curr.next = evenHead
-  return res
+  oven.next = oddHead
+  return head
 };
