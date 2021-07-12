@@ -15,7 +15,7 @@ var generate = function(numRows) {
       }
     }
     res.push(JSON.parse(JSON.stringify(curr)))
-    arr = curr
+    arr = JSON.parse(JSON.stringify(curr))
   }
   return res
 };
