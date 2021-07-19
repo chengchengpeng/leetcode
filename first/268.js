@@ -6,3 +6,12 @@ var missingNumber = function(nums) {
     if (!set.has(i)) return i
   }
 };
+
+var missingNumber = function(nums) {
+  res = 0
+  for (let i = 0; i< nums.length; i++) {
+    res = res ^ i ^ nums[i]
+  }
+  res = res ^ nums.length
+  return res
+}
