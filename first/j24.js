@@ -19,7 +19,7 @@ var reverseList = function(head) {
     pre = curr
     curr = next
   }
-
+  return pre
 };
 console.log(reverseList(head));
 
